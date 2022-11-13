@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<h2>    You can play sounds by clicking on the buttons below.</h2>
+<p>If you press start recording button will change color on red and then if you pres songs buttons it will be save for current path.</p>
+<p>If you press secound time on start recording button it will change color to gray and your path is saved</p>
+<p>If you press play path this path will start playing</p>
+<p>If you press clear button  this path be empty</p>
+<div class="soundsHelperWrapper"></div>
+<div class="pathsWrapper">
+    <div class="pathWrapper">
+        <button data-path="firstPath" class="pathWrapper__recordButton">Start recording 1 path</button>
+        <button data-path="firstPath" class="pathWrapper__playButton">Play path</button>
+        <button data-path="firstPath" class="pathWrapper__clear">Clear path</button>
+
+    </div>
+    <div class="pathWrapper">
+        <button data-path="secoundPath" class="pathWrapper__recordButton">Start recording 2 path</button>
+        <button data-path="secoundPath" class="pathWrapper__playButton">Play path</button>
+        <button data-path="secoundPath" class="pathWrapper__clear">Clear path</button>
+    </div>
+    <div class="pathWrapper">
+        <button data-path="thirdPath" class="pathWrapper__recordButton">Start recording 3 path</button>
+        <button data-path="thirdPath" class="pathWrapper__playButton">Play path</button>
+        <button data-path="thirdPath" class="pathWrapper__clear">Clear path</button>
+    </div>
+    <div class="pathWrapper">
+        <button data-path="fourthPath" class="pathWrapper__recordButton">Start recording 4 path</button>
+        <button data-path="fourthPath" class="pathWrapper__playButton">Play path</button>
+        <button data-path="fourthPath" class="pathWrapper__clear">Clear path</button>
+    </div>
+    <button class="playAllPaths">Play all paths</button>
+    <button onClick="location.reload(true)">Clear all paths</button>
+</div>
+<script src="script3.js"></script>
+</body>
+</html>
