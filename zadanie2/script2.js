@@ -1,67 +1,61 @@
-const imgArray = [
+const images = [
     {
         number:1,
-        src:'./img/image1.png'
+        src:'./image1.png'
     },
     {
         number:2,
-        src:'./img/image2.png'
+        src:'./image2.png'
     },
     {
         number:3,
-        src:'./img/image3.png'
+        src:'./image3.png'
     },
 ]
 
-const prevButton = document.querySelector('.slider__button--prev')
-const nextButton = document.querySelector('.slider__button--next')
-let currentSelectedImg = 0;
-const imgArrayLength = imgArray.length -1;
+const prev = document.querySelector('.prev')
+const next = document.querySelector('.next')
+let selected = 0;
+const imagesLength = images.length -1;
 
-const updateImg = (imgIndex) => {
+const updateBackgroundImage = (index) => {
     const sliderImg = document.querySelector('.slider img');
-    sliderImg.src = imgArray[imgIndex].src;
+    sliderImg.src = images[index].src;
 }
 
-
-const changeImgHandle= (type) => {
-    if(type ==="next") {
-        currentSelectedImg = currentSelectedImg + 1;
-        if(currentSelectedImg > imgArrayLength){
-            currentSelectedImg = 0;
-            updateImg(0);
+const changeBackgroundImage= (buttonType) => {
+    if(buttonType ==="next") {
+        selected = selected + 1;
+        if(selected > imagesLength){
+            selected = 0;
+            updateBackgroundImage(0);
         }else{
-            updateImg(currentSelectedImg);
+            updateBackgroundImage(selected);
         }
     }
 
-    if(type ==="prev"){
-        currentSelectedImg = currentSelectedImg - 1;
-        if(currentSelectedImg < 0){
-            currentSelectedImg = imgArrayLength;
-            updateImg(imgArrayLength);
+    if(buttonType ==="prev"){
+        selected = selected - 1;
+        if(selected < 0){
+            selected = imagesLength;
+            updateBackgroundImage(imagesLength);
         }else{
-            updateImg(currentSelectedImg);}
+            updateBackgroundImage(selected);}
     }
 }
 
-prevButton.addEventListener('click', () => changeImgHandle('prev'));
-nextButton.addEventListener('click', () => changeImgHandle('next'))
+prev.addEventListener('click', () => changeBackgroundImage('prev'));
+next.addEventListener('click', () => changeBackgroundImage('next'))
 
-const initSlider = () => {
-    updateImg(currentSelectedImg);
-}
-
-initSlider()
-
-
-const indexButtons = document.querySelectorAll(".slider__menu_btn");
+const numberedButtons = document.querySelectorAll(".menu_button");
 
 const changeImgByIndex= (event) => {
-    const imgIndex = event.target.getAttribute('data-imgIndex') *1;
-    updateImg(imgIndex - 1);
+    const index = event.target.getAttribute('imageIndex') *1;
+    updateBackgroundImage(index - 1);
 }
 
-indexButtons.forEach((button) => {
+numberedButtons.forEach((button) => {
     button.addEventListener('click', changeImgByIndex)
 });
+
+updateBackgroundImage(selected)
