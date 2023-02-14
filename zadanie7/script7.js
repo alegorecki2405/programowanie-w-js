@@ -1,4 +1,3 @@
-let locations = []
 
 document.getElementById('add').addEventListener('click', () => addLocation());
 document.getElementById('remove').addEventListener('click', () => removeLocation());
@@ -20,19 +19,23 @@ for(let i = 0;i<locations.length;i++) {
 }
 
 function addLocation() {
+    const locations = JSON.parse(localStorage.getItem("locations")) || [];
     let place = document.getElementById('place').value;
     if(place.length>0) {
         locations.push(place);
+        localStorage.setItem('locations',JSON.stringify(locations));
     } else {
         alert("podano nieprawidlowa wartosc");
     }
 }
 
 function removeLocation() {
+    const locations = JSON.parse(localStorage.getItem("locations")) || [];
     let place = document.getElementById('place').value;
     let index = locations.indexOf(place);
     if(index !== -1) {
         locations.splice(index,1);
+        localStorage.setItem('locations',JSON.stringify(locations));
     }
     alert(locations.toString());
 }
