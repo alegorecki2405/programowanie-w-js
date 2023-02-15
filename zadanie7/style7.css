@@ -1,0 +1,10 @@
+body {
+    width: 100%;
+}
+
+.panel {
+    width: 20%;
+    background-color: aliceblue;
+    min-height: 100px;
+    float: left;
+}
