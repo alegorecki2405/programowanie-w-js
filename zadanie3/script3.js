@@ -60,7 +60,7 @@ const playSound= (key) => {
     const audio = new Audio(sound.path);
     audio.play();
     if(recording){
-        switch(currentRecordingPathName) {
+        switch(currentPath) {
             case "pathOne":
                 pathOne.push(sound);
                 break;
@@ -94,4 +94,44 @@ const startRecord = (event) => {
 }
 
 recordingButtons.forEach( button => button.addEventListener("click", startRecord));
+
+const playPath = (event) => {
+    const path = event.target.getAttribute("data-path");
+    switch (path) {
+        case "pathOne":
+            play(0,pathOne);
+            break;
+        case "pathTwo":
+            play(0,pathTwo);
+            break;
+        case "pathThree":
+            play(0,pathThree);
+            break;
+        case "pathFour":
+            play(0,pathFour);
+            break;
+    }
+}
+
+const playButtons = document.querySelectorAll(".btnPlay");
+playButtons.forEach(button => button.addEventListener("click",playPath))
+
+const play = (index, list) => {
+    const audio = new Audio(list[index].path);
+    audio.play().then((x) => {
+        if (index < list.length - 1) {
+            setTimeout(() => play(index + 1, list), 200);
+        }
+    })
+}
+
+const playAll = () => {
+    play(0,pathOne);
+    play(0,pathTwo);
+    play(0,pathThree);
+    play(0,pathFour);
+}
+
+const playAllButton =document.getElementById("playAll");
+playAllButton.addEventListener("click",playAll);
 
