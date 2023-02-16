@@ -59,7 +59,7 @@ const playSound= (key) => {
     const sound = sounds.find(sound => sound.key === key);
     const audio = new Audio(sound.path);
     audio.play();
-    if(isRecording){
+    if(recording){
         switch(currentRecordingPathName) {
             case "pathOne":
                 pathOne.push(sound);
@@ -77,3 +77,21 @@ const playSound= (key) => {
     }
 }
 document.addEventListener("keydown", (event) => playSound(event.key), false);
+
+const recordingButtons = document.querySelectorAll(".btnRecord");
+
+const startRecord = (event) => {
+    if (recording) {
+        event.target.style.backgroundColor="";
+        recording=false;
+        currentPath="";
+    } else {
+        const path = event.target.getAttribute("data-path");
+        currentPath = path;
+        recording = true
+        event.target.style.backgroundColor="red";
+    }
+}
+
+recordingButtons.forEach( button => button.addEventListener("click", startRecord));
+
